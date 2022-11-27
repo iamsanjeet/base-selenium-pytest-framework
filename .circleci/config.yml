@@ -1,0 +1,66 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+parameters:
+  browser:
+    type: string
+    default: "headlesschrome"
+  url:
+    type: string
+    default: "https://nightly.eng.macrometa.io"
+  tenant_email:
+    type: string
+    default: "sanjeet.singh@macrometa.com"
+  tenant_password:
+    type: string
+    default: "Macrometa123!@#"
+  tags:
+    type: string
+    default: "ALL"
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+jobs:
+  test:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+    docker:
+      - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    parallelism: 4
+    steps:
+      - checkout
+      - run:
+          name: "Install package"
+          command: npm install
+      - run:
+          name: "Set Custom cypress API url "
+          command: export CYPRESS_API_URL="http://qavm-ap-west.eng.macrometa.io:5500/"
+      - run:
+          name: "Run test"
+          command: npm run test:ci ${CIRCLE_BUILD_NUM}
+      # - run:
+      #     name: "Run tests"
+      #     command: python3 -m pipenv run test -b << pipeline.parameters.browser >> --url << pipeline.parameters.url >> --tenant_email << pipeline.parameters.tenant_email >> --tenant_pwd << pipeline.parameters.tenant_password >> --tags << pipeline.parameters.tags >>
+      - store_artifacts:
+          path: ./cypress/reports
+      # - store_artifacts:
+      #     path: ./cypress/videos
+      # - store_artifacts:
+      #     path: ./cypress/screenshots
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  run-test-workflow:
+    jobs:
+      - test
+  nightly:     
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"        
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test

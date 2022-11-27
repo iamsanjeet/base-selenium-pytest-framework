@@ -1,0 +1,14 @@
+.vscode
+
+# Ignore vim tempfiles (the filenames end with '~')
+*~
+
+.c8automation-gui/**
+results/**
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+*.log
