@@ -17,10 +17,10 @@ def initialize_parser():
         help="Input federation base url. For e.g https://smoke3.eng.macrometa.io",
         default="https://smoke3.eng.macrometa.io",
     )
-    parser.add_argument("--mm_email", help="MM email id", default="mm@macrometa.io")
-    parser.add_argument("--mm_pwd", help="MM password", default="Macrometa123!@#")
-    parser.add_argument("--tenant_email", help="Tenant email id", default='sanjeet.singh1@macrometa.com')
-    parser.add_argument("--tenant_pwd", help="Tenant password", default='Macrometa123!@#')
+    parser.add_argument("--mm_email", help="MM email id", default="default")
+    parser.add_argument("--mm_pwd", help="MM password", default=password")
+    parser.add_argument("--tenant_email", help="Tenant email id", default='sanjeet')
+    parser.add_argument("--tenant_pwd", help="Tenant password", default='password')
     parser.add_argument(
         "-t", "--tags", help="Comma separated tag list to run"
     )
