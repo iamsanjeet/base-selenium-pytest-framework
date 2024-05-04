@@ -7,13 +7,13 @@ parameters:
     default: "headlesschrome"
   url:
     type: string
-    default: "https://nightly.eng.macrometa.io"
+    default: "https://nightly.setup.io"
   tenant_email:
     type: string
-    default: "sanjeet.singh@macrometa.com"
+    default: "iamsanjeet"
   tenant_password:
     type: string
-    default: "Macrometa123!@#"
+    default: "password"
   tags:
     type: string
     default: "ALL"
@@ -35,7 +35,7 @@ jobs:
           command: npm install
       - run:
           name: "Set Custom cypress API url "
-          command: export CYPRESS_API_URL="http://qavm-ap-west.eng.macrometa.io:5500/"
+          command: export CYPRESS_API_URL="http://sorry-cypress-dashboard:5500/"
       - run:
           name: "Run test"
           command: npm run test:ci ${CIRCLE_BUILD_NUM}
