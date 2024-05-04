@@ -21,10 +21,10 @@
 5. Run tests
     ```
     # Example 1: Run all p0 test cases
-    pipenv run test --browser chrome --url https://nightly.eng.macrometa.io --results results/ --html results/result.html -m p0
+    pipenv run test --browser chrome --url https://nightly.io --results results/ --html results/result.html -m p0
 
     # Example 1: Run all login suite test cases
-    pipenv run test --browser chrome --url https://nightly.eng.macrometa.io --html results/result.html -m login
+    pipenv run test --browser chrome --url https://nightly.io --html results/result.html -m login
     ```
 
 ## Design Considerations
