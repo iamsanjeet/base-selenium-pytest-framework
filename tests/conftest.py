@@ -62,7 +62,7 @@ class DriverInitializer:
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome")
-    parser.addoption("--url", action="store", default="https://aaaaaaaaanightly.eng.macrometa.io/")
+    parser.addoption("--url", action="store", default="nightly")
     parser.addoption("--results", action="store", default="results/")
 
 @pytest.fixture
