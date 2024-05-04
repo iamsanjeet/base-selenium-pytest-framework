@@ -22,11 +22,10 @@ class TestLogin:
     @pytest.mark.p0
     @pytest.mark.streams
     def test_successfull_login_tenant(self, base_url):
-        logger.info("2222222222222222222running:::::::::::::test_successfull_login")
         LoginPage(self.driver) \
             .open_url(base_url) \
-            .input_email('sanjeet.singh@macrometa.com') \
-            .input_password("Macrometa123!@#") \
+            .input_email('sanjeet') \
+            .input_password("password") \
             .submit()
     #
     # Example: To demonstrate page object model, fluent iterface and pytest markers
@@ -34,11 +33,10 @@ class TestLogin:
     @pytest.mark.p1
     @pytest.mark.db  
     def test_successfull_login_mm(self, base_url):
-        logger.info("2222222222222222222running:::::::::::::test_successfull_login")
         LoginPage(self.driver) \
             .open_url(base_url) \
-            .input_email('mm@macrometa.io') \
-            .input_password("Macrometa123!@#") \
+            .input_email('admin') \
+            .input_password("password") \
             .submit()
 
     #
@@ -48,7 +46,7 @@ class TestLogin:
     @pytest.mark.login
     def test_successfull_login_tenant(self, base_url):
         login_steps_obj = LoginSteps(self.driver)
-        login_steps_obj.login_with_valid_credential(base_url, "sanjeet.singh@macrometa.com", "Macrometa123!@#")
+        login_steps_obj.login_with_valid_credential(base_url, "sanjeet", "password")
         login_steps_obj.assert_dashboard_page_landing()
         pass
         
